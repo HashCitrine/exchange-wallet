@@ -5,6 +5,7 @@ import com.exchange.postgres.entity.Bankstatement;
 import com.exchange.postgres.repository.BankstatementRepository;
 import com.exchange.postgres.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 @Service
-@Slf4j
+@Log4j2
 @Transactional
 @RequiredArgsConstructor
 public class BankstatementService {

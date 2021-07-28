@@ -2,14 +2,13 @@ package com.exchange.api;
 
 import com.exchange.postgres.entity.Bankstatement;
 import com.exchange.postgres.service.BankstatementService;
-import com.exchange.postgres.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Slf4j
+@Log4j2
 @RequiredArgsConstructor
 public class BankstatementController {
 
