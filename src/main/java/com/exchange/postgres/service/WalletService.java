@@ -9,8 +9,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
 @Service
 @Log4j2
 @Transactional
@@ -20,22 +18,23 @@ public class WalletService {
     private final WalletRepository walletRepository;
 
     public String depositAndWithdraw(String transactionId){
-        saveBankStatement(transactionId);
-        saveWallet(bankStatementRepository.findByTransactionId(Long.parseLong(transactionId)));
+        Long longTransactionId = Long.parseLong(transactionId);
+        saveBankStatement(longTransactionId);
+        saveWallet(bankStatementRepository.findByTransactionId(longTransactionId));
 
         return "success deposit or withdraw";
     }
 
-    private void saveBankStatement(String transactionId) {
+    private void saveBankStatement(Long transactionId) {
         try {
             updateBankStatementStatus(transactionId, Constants.STATUS.SUCC);
-        }catch(Exception e){
+        } catch (Exception e) {
             log.info("error save bank statement");
             updateBankStatementStatus(transactionId, Constants.STATUS.FAIL);
         }
     }
 
-    private void updateBankStatementStatus(String transactionId, Constants.STATUS status) {
+    private void updateBankStatementStatus(Long transactionId, Constants.STATUS status) {
         bankStatementRepository.updateStatus(transactionId, status.toString());
     };
 
